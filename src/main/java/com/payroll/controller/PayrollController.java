@@ -33,9 +33,9 @@ return payrollsService.getpayrollsById(payrollId);
 }
 //creating a delete mapping that deletes a specified payroll
 @DeleteMapping("/payroll/{payrollid}")
-public void deletepayroll(@PathVariable("payrollid") long payrollId) 
+public String deletepayroll(@PathVariable("payrollid") long payrollId) 
 {
-payrollsService.delete(payrollId);
+return payrollsService.delete(payrollId);
 }
 //creating post mapping that post the payroll detail in the database
 @PostMapping("/payrolls")
@@ -45,10 +45,9 @@ payrollsService.saveOrUpdate(payrolls);
 return payrolls;
 }
 //creating put mapping that updates the payroll detail 
-@PutMapping("/payrolls")
-public Payroll update(@RequestBody Payroll payrolls) 
+@PutMapping("/payroll/{payrollid}")
+public String update(@PathVariable("payrollid") long payrollId,@RequestBody Payroll payrolls) 
 {
-payrollsService.saveOrUpdate(payrolls);
-return payrolls;
+return payrollsService.update(payrollId,payrolls);
 }
 }

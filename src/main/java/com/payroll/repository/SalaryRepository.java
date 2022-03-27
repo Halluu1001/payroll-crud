@@ -6,5 +6,5 @@ import com.payroll.model.Salary;
 
 public interface SalaryRepository extends CrudRepository<Salary, Long> 
 {
-
+	Salary findById(long salaryId);
 }

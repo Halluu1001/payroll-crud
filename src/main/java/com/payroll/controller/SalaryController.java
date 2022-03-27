@@ -32,9 +32,9 @@ public class SalaryController {
 	}
 	//creating a delete mapping that deletes a specified Salary
 	@DeleteMapping("/Salary/{salaryId}")
-	public void deleteSalary(@PathVariable("salaryId") long salaryId) 
+	public String deleteSalary(@PathVariable("salaryId") long salaryId) 
 	{
-	SalarysService.delete(salaryId);
+	return SalarysService.delete(salaryId);
 	}
 	//creating post mapping that post the Salary detail in the database
 	@PostMapping("/Salarys")
@@ -45,10 +45,9 @@ public class SalaryController {
 	}
 	//creating put mapping that updates the Salary detail 
 	@PutMapping("/Salarys")
-	public Salary update(@RequestBody Salary Salarys) 
+	public String update(@PathVariable("salaryId") long salaryId, @RequestBody Salary Salarys) 
 	{
-	SalarysService.saveOrUpdate(Salarys);
-	return Salarys;
+	return SalarysService.update(salaryId,Salarys);
 	}
 
 

@@ -1,6 +1,6 @@
 package com.payroll.service;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class JobdeptService {
 	//getting a specific record by using the method findById() of CrudRepository
 	public Jobdept getJobdeptsById(long jobId) 
 	{
-	return JobdeptRepository.findById(jobId).get();
+	return JobdeptRepository.findById(jobId);
 	}
 	//saving a specific record by using the method save() of CrudRepository
 	public Jobdept saveOrUpdate(Jobdept Jobdepts) 
@@ -32,14 +32,21 @@ public class JobdeptService {
 		return Jobdepts;
 	}
 	//deleting a specific record by using the method deleteById() of CrudRepository
-	public void delete(long jobId) 
+	public String delete(long jobId) 
 	{
 		JobdeptRepository.deleteById(jobId);
+		return "successfully deleted";
 	}
 	//updating a record
-	public void update(Jobdept Jobdepts, long jobId) 
+	public String update( long jobId,Jobdept Jobdepts) 
 	{
-		JobdeptRepository.save(Jobdepts);
+		Jobdept job = JobdeptRepository.findById(jobId);
+		job.setJobDept(Jobdepts.getJobDept());
+		job.setName(Jobdepts.getName());
+		job.setDescription(Jobdepts.getDescription());
+		job.setSalaryRange(Jobdepts.getSalaryRange());
+		JobdeptRepository.save(job);
+		return  "successfully updated";
 	}
 
 }

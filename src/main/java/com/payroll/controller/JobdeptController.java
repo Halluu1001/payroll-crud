@@ -32,9 +32,9 @@ public class JobdeptController {
 	}
 	//creating a delete mapping that deletes a specified Jobdept
 	@DeleteMapping("/Jobdept/{jobId}")
-	public void deleteJobdept(@PathVariable("jobId") long jobId) 
+	public String deleteJobdept(@PathVariable("jobId") long jobId) 
 	{
-	JobdeptsService.delete(jobId);
+	return JobdeptsService.delete(jobId);
 	}
 	//creating post mapping that post the Jobdept detail in the database
 	@PostMapping("/Jobdepts")
@@ -45,9 +45,9 @@ public class JobdeptController {
 	}
 	//creating put mapping that updates the Jobdept detail 
 	@PutMapping("/Jobdepts")
-	public Jobdept update(@RequestBody Jobdept Jobdepts) 
+	public String update(@PathVariable("jobId") long jobId,@RequestBody Jobdept Jobdepts) 
 	{
-	JobdeptsService.saveOrUpdate(Jobdepts);
-	return Jobdepts;
+	return JobdeptsService.update(jobId,Jobdepts);
+	
 	}
 }
